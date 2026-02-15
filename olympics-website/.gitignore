@@ -42,3 +42,6 @@ next-env.d.ts
 
 # ai specs
 .claude
+
+# Generate prism
+/app/generated/prisma
