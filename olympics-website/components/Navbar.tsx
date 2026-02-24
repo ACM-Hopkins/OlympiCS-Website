@@ -54,8 +54,8 @@ export default function Navbar() {
     };
 
     return (
-        <nav className='w-full bg-white shadow-md px-6 py-5 flex items-end justify-left'>
-            <Link href = '/' className='text -xl font-bold text-gray-800'>Hopkins OlympiCS</Link>
+        <nav className='w-full bg-white shadow-md px-6 py-5 flex items-center justify-between'>
+            <Link href = '/' className='text-xl font-bold text-gray-800'>Hopkins OlympiCS</Link>
             <div className = "hidden md:flex gap-10">
                 {links.map((link) => (
                     <Link
@@ -66,7 +66,7 @@ export default function Navbar() {
                         </Link>
                 ))}
             </div>
-            <button className = "block md:hidden text-gray-900" onClick= {handleClick}>
+            <button className = "block md:hidden text-gray-900 text-3xl" onClick= {handleClick}>
                 {isOpen ? "x" : "☰"}
             </button>
 
