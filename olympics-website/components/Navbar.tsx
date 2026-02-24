@@ -4,13 +4,15 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 
+/*
 export default function Navbar() {
     const pathname = usePathname();
     return (
     <nav className = "w-full bg-white shadow-md px-6 py-5 flex items-center justify-left">
         <Link href="/" className="text -xl font-bold text-gray-800">Hopkins OlympiCS</Link>
-        <div className = "flex gap-10">
+        <div className = "hidden md:flex gap-10">
             <Link href="/" className={pathname === "/" ? "text-black font-semibold" : "text-gray-500 hover:text-black"}>
                 Home
             </Link>
@@ -31,5 +33,25 @@ export default function Navbar() {
             </Link>
         </div>
     </nav>
+    );
+}
+*/
+
+export default function Navbar() {
+    const pathname = usePathname();
+    const [isOpen, setIsOpen] = useState(false);    
+
+    const links = [
+        {href: '/rules', label: "Rules"},
+        {href: '/schedule', label: "Schedule"},
+        {href: '/scoreboard', label: "Scoreboard"},
+        {href: '/teams', label: "Teams"},
+        {href: '/register', label: "Register"},
+    ];
+    return (
+        <nav className='w-full bg-white shadow-md px-6 py-5 flex items-center justify-left'>
+            <Link href = '/' className='text -xl font-bold text-gray-800'>Hopkins OlypmiCS</Link>
+            
+        </nav>
     );
 }
