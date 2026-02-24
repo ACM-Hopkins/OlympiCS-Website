@@ -5,11 +5,92 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 
+enum TeamStatus {
+    PENDING
+    ACCEPTED
+    DISQUALIFIED
+    DNS
+}
+
+enum TShirtSize {
+    XS
+    S
+    M
+    L
+    XL
+    XXL
+}
+
 model user {
     id Int @id @default(autoincrement())
     email String @unique
 }
 
+model Event {
+    id Int @id @default(autoincrement())
+    year Int
+    name String
+    date DateTime
+    isRegistrationOpen Boolean @default(false)
+    description String?
+    teams Team[]
+    games Game[]
+    historicalWinners HistoricalWinner[]
+}
+
+model Team {
+    id Int @id @default(autoincrement())
+    name String
+    createdAt DateTime @default(now())
+    status TeamStatus @default(PENDING)
+    lookingForMember Boolean @default(false)
+    eventId Int
+    event Event @relation(fields: [eventId], references: [id])
+    members TeamMember[]
+    scores Score[]
+}
+
+model TeamMember {
+    id Int @id @default(autoincrement())
+    name String
+    email String @unique
+    tShirtSize TShirtSize
+    dietaryRestrictions String?
+    isCaptain Boolean @default(false)
+    teamId Int
+    team Team @relation(fields: [teamId], references: [id])
+}
+
+model Game {
+    id Int @id @default(autoincrement())
+    name String
+    description String?
+    pointValue Int
+    order Int
+    eventId Int
+    event Event @relation(fields: [eventId], references: [id])
+    scores Score[]
+}
+
+model Score {
+    id Int @id @default(autoincrement())
+    points Int
+    teamId Int
+    team Team @relation(fields: [teamId], references: [id])
+    gameId Int
+    game Game @relation(fields: [gameId], references: [id])
+    //Prevents duplicate scores for same team in same game
+    @@unique([teamId, gameId])
+}
+
+model HistoricalWinner {
+    id Int @id @default(autoincrement())
+    teamName String
+    placement Int
+    totalScore Int
+    eventId Int
+    event Event @relation(fields: [eventId], references: [id])
+}
 
 generator client {
   provider = "prisma-client"
@@ -19,3 +100,4 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
