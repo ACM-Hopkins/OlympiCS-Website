@@ -64,14 +64,10 @@ model Score {
   teamId       Int
 }
 
-model EditableConstants {
-  id                Int    @id @default(autoincrement())
-  currentEventId    Int?
-  historicalWinners Json?
-}
 
 enum TeamStatus {
   PENDING
+  DELETED
   ACCEPTED
   DISQUALIFIED
   DNS
