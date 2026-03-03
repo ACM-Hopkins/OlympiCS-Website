@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Silkscreen } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -14,6 +14,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const silkScreen = Silkscreen({
+  weight: "400",
+  variable: "--font-silkscreen",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   title: "Hopkins OlympiCS",
   description: "Hopkins OlympiCS",
@@ -25,9 +31,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Navbar />
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${silkScreen.variable}`}>
+      <body className="antialiased">
         {children}
         <Footer />
       </body>
