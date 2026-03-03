@@ -12,6 +12,8 @@ model User {
   dietaryRestrictions String?
   teamMemberships     TeamMembership[]
   role                Role             @default(USER)
+  accounts            Account[]
+  sessions            Session[]
 }
 
 model Game {
@@ -97,7 +99,7 @@ datasource db {
 }
 
 model Account {
-  userId            String
+  userId            Int
   type              String
   provider          String
   providerAccountId String
@@ -119,7 +121,7 @@ model Account {
 
 model Session {
   sessionToken String   @unique
-  userId       String
+  userId       Int
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
  
