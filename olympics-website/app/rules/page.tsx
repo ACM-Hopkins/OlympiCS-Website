@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'Rules & Guidelines | OlympiCS',
   description: 'Official rules, guidelines, and logistics for the JHU OlympiCS programming competition',
 }; 
-//a
+//aa
 
 export default function RulesPage() {
   const { sections, lastUpdated } = rulesData;
